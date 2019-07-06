@@ -1,6 +1,8 @@
+// (ɔ) The_Cowboy 1000 BC - 2019 AD. All rights reversed.
+
+
 #pragma once
 
-#include "GameFramework/Character.h"
 #include "GameFramework/Info.h"
 #include "Vector.h"
 #include "Engine/StaticMeshActor.h"

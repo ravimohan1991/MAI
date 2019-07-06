@@ -1,4 +1,4 @@
 #pragma once
 
-#include "MAIBehavior.h"
+#include "MAIController.h"
 #include "MAIGameState.h"
