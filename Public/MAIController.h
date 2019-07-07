@@ -24,8 +24,6 @@ public:
     /** Find the closest box*/
     AStaticMeshActor* FindClosestBox();
 
-    //float Distance = 999999;
-
 protected:
     /** Override BeginPlay() for spawning BrainComponent. */
     void BeginPlay() override;

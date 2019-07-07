@@ -7,23 +7,22 @@
 
 AMAIController::AMAIController()
 {
-    // for Tick purpose. Try ticking the brain instead.
-    PrimaryActorTick.bCanEverTick = true;
+    // for Tick purpose.
+    PrimaryActorTick.bCanEverTick = false;
 }
 
 void AMAIController::BeginPlay()
 {
-   // UMAIBrainComponent BrainComponent(this);
-    PrimaryActorTick.bCanEverTick = true;
-    UE_LOG(LogTemp, Warning, TEXT("Beginplay of MAIController"));
+    BrainComponent = NewObject<UMAIBrainComponent>(this);
+    BrainComponent->RegisterComponent();
     Super::BeginPlay();
 }
 
 void AMAIController::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
-    //UE_LOG(LogTemp, Warning, TEXT("Tick is working."));
-    UE_LOG(LogTemp, Warning, TEXT("Closest box is %s."), *FindClosestBox()->GetActorLocation().ToString());
+   // AStaticMeshActor* closest = FindClosestBox();
+   // UE_LOG(LogTemp, Warning, TEXT("Closest box is %s at distance of %d."), *closest->GetName(), int32((closest->GetActorLocation() - MAIGameRep->GetSelfLocation()).Size()));
 
 }
 

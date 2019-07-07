@@ -12,10 +12,18 @@ class UMAIBrainComponent : public UBrainComponent
     GENERATED_BODY()
 
 public:
+    UMAIBrainComponent();
 
-    //UMAIBrainComponent( AMAIController* ACont = nullptr );
+    /** Ticking for heuristics. */
+    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-    /** Setting the owner.*/
-    void SetOwner( AAIController* ACont ){AIOwner = ACont;}
 
+private:
+    /** Exploration flag. */
+    bool bShouldExplore = true;
+
+    /** Closest box pointer. */
+    AStaticMeshActor* Closest = nullptr;
+
+    float deg = 0;
 };
