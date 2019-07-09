@@ -6,6 +6,7 @@
 #include "GameFramework/Info.h"
 #include "Vector.h"
 #include "Engine/StaticMeshActor.h"
+#include "GameFramework/GameModeBase.h"
 #include "MAIGameState.generated.h"
 
 UCLASS()
@@ -23,6 +24,9 @@ private:
     UPROPERTY()
     TArray<AStaticMeshActor*> WhiteBoxes;
 
+    /** The gamemode referance. */
+    AGameModeBase* GameMode;
+
 public:
     /** Getting current location of the Shooter.*/
     UFUNCTION()
@@ -38,4 +42,11 @@ public:
 
     /** Add elements in box array. */
     void AddWhiteBox( AStaticMeshActor* SActor ){WhiteBoxes.Add(SActor);}
+
+    /** Set GameMode. */
+    void SetGameMode( AGameModeBase* GMode ){GameMode = GMode;}
+
+    /** Get GameMode. */
+    AGameModeBase* GetGameMode(){return GameMode;}
+
 };

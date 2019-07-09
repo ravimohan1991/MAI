@@ -7,7 +7,7 @@
 #include "MAIGameState.h"
 #include "MAIController.generated.h"
 
-UCLASS()
+UCLASS(ClassGroup = MAI, BlueprintType, Blueprintable)
 class AMAIController : public AAIController
 {
     GENERATED_BODY()
@@ -21,8 +21,18 @@ public:
     /** Setting the game state reference. */
     void SetGameRep( AMAIGameState* GR ){MAIGameRep = GR;}
 
+    /** Getting the game state reference. */
+    AMAIGameState* GetGameRep(){return MAIGameRep;}
+
     /** Find the closest box*/
     AStaticMeshActor* FindClosestBox();
+
+    UFUNCTION(BlueprintCallable, Category = "MAI")
+    /** For possessing a pawn. */
+    void StartPossessing( APawn* PPawn );//{OnPossess(PPawn);}
+
+    /** Find Dummy*/
+    APawn* FindDummy();
 
 protected:
     /** Override BeginPlay() for spawning BrainComponent. */

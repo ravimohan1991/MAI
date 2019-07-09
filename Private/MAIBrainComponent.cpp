@@ -11,15 +11,20 @@ UMAIBrainComponent::UMAIBrainComponent()
 
 void UMAIBrainComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
-    UE_LOG(LogTemp, Warning, TEXT("Brain Ticking! AI owner is %s"), *AIOwner->GetName());
+   // UE_LOG(LogTemp, Warning, TEXT("Brain Ticking! AI owner is %s"), *AIOwner->GetName());
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
     /*if(bShouldExplore)
     {
         ((AMAIController*) AIOwner)
     }*/
-    //AIOwner->SetControlRotation(FRotator(0, deg * DeltaTime ,0));
-    //AIOwner->GetPawn()->FaceRotation(FRotator(0, deg++ * DeltaTime ,0));
-    AIOwner->GetPawn()->SetActorRotation(FRotator(0, deg++ * DeltaTime ,0));
+    UE_LOG(LogTemp, Warning, TEXT("Attempt to rotate Dummy by %d degrees"), int32(deg * DeltaTime));
+
+    FRotator temp = AIOwner->GetPawn()->GetActorRotation();
+
+    const FRotator resultRotation = FMath::RInterpTo( temp, temp + FRotator(0, 10, 0), DeltaTime, 2.0 );
+    //AIOwner->GetPawn()->SetActorRotation(resultRotation);
+    ((AMAIController*) AIOwner)->FindDummy()->SetActorRotation(resultRotation);
+    ((AMAIController*) AIOwner)->FindDummy()->GetController()->SetControlRotation(resultRotation);
 }
 
