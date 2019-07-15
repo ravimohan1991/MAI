@@ -39,7 +39,15 @@ public:
     APawn* FindPawns();
 
     /***/
-   // USceneComponent* FindTFocus();
+    void DoInitialization();
+
+    void Pressed1();
+
+    void Pressed2();
+
+    void FirePawn();
+
+    AMAIGameState* GetMAIGameState(){return  MAIGameState;}
 
 private:
     /** MAIGamestate referance. */
@@ -53,6 +61,12 @@ private:
 
     /** The MAI controller! */
     AMAIController* MAIController;
+
+    /** Component that handles input for this actor, if input is enabled. */
+    UPROPERTY()
+    APawn* CInputComponent;
+
+    AController* Original;
 
 protected:
     /** Override BeginPlay() for spawning purposes. */

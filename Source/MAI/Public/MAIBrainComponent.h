@@ -23,6 +23,12 @@ public:
     /** Find the closest box*/
     AStaticMeshActor* FindClosestBox( TArray<AStaticMeshActor*> ASMArray );
 
+    /** Absolute muzzle */
+    FVector GetAbsMuzzleVec(FRotator InitialRot);
+
+    /** Function for invoking OnFire() method (in ShooterAIDummy). */
+    void FireGun();
+
 private:
     /** Exploration flag. */
     bool bShouldExplore = true;
@@ -31,4 +37,7 @@ private:
     AStaticMeshActor* Closest = nullptr;
 
     float deg = 0;
+
+    /** Tick counter. */
+    int ticktime = 0;
 };

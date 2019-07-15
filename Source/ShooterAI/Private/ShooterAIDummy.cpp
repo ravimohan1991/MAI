@@ -51,19 +51,20 @@ AShooterAIDummy::AShooterAIDummy()
 
     FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
     FP_MuzzleLocation->SetupAttachment(SK_Mannequin);
-    FP_MuzzleLocation->SetRelativeLocation(FVector(0.2f, 48.4f, -10.6f));
+    //FP_MuzzleLocation->SetRelativeLocation(FVector(0.2f, 48.4f, -10.6f));
 }
 
 void AShooterAIDummy::BeginPlay()
 {
     Super::BeginPlay();
 
-    // store self referance in Gamemode and let MAI posses itself
-    AShooterAIGameMode* TempGameMode = GetWorld()->GetAuthGameMode<AShooterAIGameMode>();
-    if(TempGameMode)
+    // Method to talk to gamemode. Store self referance in Gamemode and let MAI posses itself
+    GameMode = GetWorld()->GetAuthGameMode<AShooterAIGameMode>();
+    if(GameMode)
     {
-        TempGameMode->SetSelfPlayer(this);
-        TempGameMode->PossessSelfPawn();// let the pawn be possessed!
+        GameMode->SetSelfPlayer(this);
+        GameMode->DoInitialization();
+        GameMode->GetMAIGameState()->SetFireBindDelegate(FireAction);
     }
 }
 
@@ -80,8 +81,7 @@ void AShooterAIDummy::SetupPlayerInputComponent(class UInputComponent* PlayerInp
     PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
     // Bind fire event
-    PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AShooterAIDummy::OnFire);
-
+    FireAction  = &PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AShooterAIDummy::OnFire);
 
     // Bind movement events
     PlayerInputComponent->BindAxis("MoveForward", this, &AShooterAIDummy::MoveForward);
@@ -114,7 +114,7 @@ void AShooterAIDummy::OnFire()
 
             // spawn the projectile at the muzzle
             World->SpawnActor<AShooterAIProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-
+            UE_LOG(LogTemp, Warning, TEXT("The SpawnRotation is %s"), *SpawnRotation.ToString());
         }
     }
 

@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "ShooterAIGameMode.h"
 
 #include "ShooterAIDummy.generated.h"
 
@@ -28,6 +29,10 @@ public:
     /** First person camera */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     class UCameraComponent* FirstPersonCameraComponent;
+
+    AShooterAIGameMode* GameMode;
+
+    FInputActionBinding* FireAction;
 
 
 protected:
@@ -89,4 +94,9 @@ public:
     /** Base look up/down rate, in deg/sec. Other scaling may affect final rate. */
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
     float BaseLookUpRate;
+
+    /***/
+    void Pressed1();
+
+    void Pressed2();
 };

@@ -2,13 +2,18 @@
 
 #include "ShooterAIGameMode.h"
 #include "ShooterAIHUD.h"
-#include "ShooterAICharacter.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/World.h"
 #include "EngineUtils.h"
 #include "Engine/StaticMeshActor.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
 #include "Engine/Classes/Engine/StaticMesh.h"
+#include "ShooterAIDummy.h"
+#include "Runtime/Engine/Classes/Components/SkeletalMeshComponent.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/PlayerInput.h"
+#include "Runtime/Engine/Classes/Components/InputComponent.h"
+
 
 AShooterAIGameMode::AShooterAIGameMode()
 	: Super()
@@ -36,29 +41,45 @@ void AShooterAIGameMode::BeginPlay()
     MAIController = (AMAIController*) GetWorld()->SpawnActor(AMAIController::StaticClass());
     MAIController->SetGameRep(MAIGameState);
 
-    // make MAI possess Dummy
-    //MAIController->StartPossessing(FindPawns());
-
-    //MAIGameState->SetTFocus(FindTFocus());
-
     // Save box actor references existing in the level
     BuildBoxArray();
 
     Super::BeginPlay();
 }
 
-void AShooterAIGameMode::PossessSelfPawn()
+void AShooterAIGameMode::DoInitialization()
 {
-   //SelfPlayer->PossessedBy(MAIController);
-   //MAIController->SetPawn(SelfPlayer);
-   //MAIController->StartPossessing(SelfPlayer);
-   //SelfPlayer->bUseControllerRotationYaw = true;
-   /*AController* temp =  SelfPlayer->GetController();
-   temp->UnPossess();
-   temp->Possess(FindPawns());
-   MAIController->StartPossessing(GetSelfPlayer());*/
-   // MAIGameState->SetCameraManager(((APlayerController*) SelfPlayer->GetController() )->PlayerCameraManager);
+    Original = SelfPlayer->GetController();
+
+    // For input purposes
+    EnableInput((APlayerController*)Original);
+    InputComponent->BindKey(FKey(FName("One")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::Pressed1);
+    InputComponent->BindKey(FKey(FName("Two")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::Pressed2);
+
+    MAIGameState->SetMuzzle(((AShooterAIDummy*)GetSelfPlayer())->FP_MuzzleLocation);
+    MAIGameState->SelfPawn = SelfPlayer;
+    MAIGameState->Original = (APlayerController*) Original;
 }
+
+void AShooterAIGameMode::Pressed1()
+{
+    //UE_LOG(LogTemp, Warning, TEXT("Pressed 1"));
+    //MAIGameState->SetCameraManager(((APlayerController*) Original)->PlayerCameraManager);
+    // memorizing is important because control rotations are rewritten on possession (as per actor
+    // rotations which only consist of yaw)
+    FRotator temp = SelfPlayer->GetControlRotation();
+    MAIController->Possess(SelfPlayer);
+    SelfPlayer->Controller->SetControlRotation(temp);
+}
+
+void AShooterAIGameMode::Pressed2()
+{
+    //UE_LOG(LogTemp, Warning, TEXT("Pressed 2"));
+    FRotator temp = SelfPlayer->GetControlRotation();
+    Original->Possess(SelfPlayer);
+    SelfPlayer->Controller->SetControlRotation(temp);
+}
+
 
 void AShooterAIGameMode::BuildBoxArray()
 {
@@ -97,25 +118,7 @@ APawn* AShooterAIGameMode::FindPawns()
     }
     return nullptr;
 }
-/*
-USceneComponent* AShooterAIGameMode::FindTFocus()
-{
-    FString UFocusRecognition(TEXT("targetfo"));
-    FString Left(TEXT("l"));
-    FString Right(TEXT("r"));
 
-    for( TActorIterator<USceneComponent> ActorItr(GetWorld()); ActorItr; ++ActorItr )
-    {
-        FString tempst(*ActorItr->GetName());
-        if(tempst.Split(*UFocusRecognition, &Left, &Right))
-        {
-           return  *ActorItr;
-        }
-
-    }
-    return nullptr;
-}
-*/
 void AShooterAIGameMode::Tick( float DeltaSeconds )
 {
     //UE_LOG(LogTemp, Warning, TEXT("Tick() working"));

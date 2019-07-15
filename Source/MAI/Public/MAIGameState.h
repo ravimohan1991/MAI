@@ -19,11 +19,17 @@ private:
     UPROPERTY()
     FVector SelfLocation;
 
-    /** The location of white boxes stored dynamically! I am assuming
-        number of boxes don't change in the level. */
-    UPROPERTY()
+    /**
+     * The location of white boxes stored dynamically!
+     * I am assuming number of boxes don't change in
+     * the level.
+     */
     TArray<AStaticMeshActor*> WhiteBoxes;
 
+    /**
+     * For tracking boxes seen. Not
+     * Not functional yet.
+     */
     TArray<AStaticMeshActor*> SeenWhiteBoxes;
 
     /** The gamemode referance. */
@@ -32,12 +38,15 @@ private:
     /** Camera manager. */
     APlayerCameraManager* MPlayerCameraManager;
 
-    /***/
-    USceneComponent* TFocus;
+    /** Reference for place of shooting projectile. */
+    class USceneComponent* FP_MuzzleLocation;
+
+    /** Reference to firing delegate. */
+    FInputActionBinding* FireBindDelegate;
 
 public:
+
     /** Getting current location of the Shooter.*/
-    UFUNCTION()
     FVector GetSelfLocation(){return SelfLocation;}
 
     /** Setting current location of the Shooter.*/
@@ -69,9 +78,15 @@ public:
     APlayerCameraManager* GetCameraManager(){return MPlayerCameraManager;}
 
     /***/
-    void SetTFocus(USceneComponent* USC){TFocus = USC;}
+    void SetMuzzle(USceneComponent* USC){FP_MuzzleLocation = USC;}
 
-    USceneComponent* GetTFocus(){return TFocus;}
+    USceneComponent* GetMuzzle(){return FP_MuzzleLocation;}
 
+    void SetFireBindDelegate(FInputActionBinding* Del){FireBindDelegate = Del;}
 
+    FInputActionBinding* GetFireBindDelegate(){return FireBindDelegate;}
+
+public:
+     APawn* SelfPawn;
+     APlayerController* Original;
 };
