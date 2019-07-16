@@ -26,16 +26,11 @@ void UMAIBrainComponent::TickComponent(float DeltaTime, enum ELevelTick TickType
         FVector InitialVec = InitialRot.Vector();
         FVector FinalVec = closest->GetActorLocation() - GetAbsMuzzleVec(InitialRot);
 
-        // UE_LOG(LogTemp, Warning, TEXT("The FinalVec is %s"), *FinalVec.ToString());
         FRotator FinalRotation = FinalVec.Rotation();
         const FRotator resultRotation = FMath::RInterpTo(InitialRot, FinalRotation, DeltaTime, 2.0);
-        //  UE_LOG(LogTemp, Warning, TEXT("The resultRotation is %s"), *resultRotation.ToString());
         AIOwner->SetControlRotation(resultRotation);
-        UE_LOG(LogTemp, Warning, TEXT("resultRotation is %s"), *resultRotation.ToString());
-        AIOwner->GetPawn()->SetActorRotation(resultRotation);//  SetControlRotation(resultRotation);  //GetPawn()->SetActorRotation(resultRotation);
-       // ((APlayerController*) ((AMAIController*) AIOwner)->GetGameRep()->Original)->AddPitchInput(resultRotation.Pitch);
-        UE_LOG(LogTemp, Warning, TEXT("Actor rotation is %s"), *AIOwner->GetPawn()->GetActorRotation().ToString());
-        ((AMAIController*) AIOwner)->GetGameRep()->Original->SetViewTarget(AIOwner->GetPawn());
+        AIOwner->GetPawn()->SetActorRotation(resultRotation);
+        ((AMAIController*) AIOwner)->GetGameRep()->GetOriginalController()->SetViewTarget(AIOwner->GetPawn());
         if(ticktime >= 60 && (InitialRot - resultRotation).Yaw < 0.01 && (InitialRot - resultRotation).Pitch < 0.01)
         {
             FireGun();
@@ -48,13 +43,15 @@ void UMAIBrainComponent::TickComponent(float DeltaTime, enum ELevelTick TickType
 void UMAIBrainComponent::FireGun()
 {
     if(((AMAIController*) AIOwner)->GetGameRep()->GetFireBindDelegate()->GetActionName() == "Fire")
+    {
         ((AMAIController*) AIOwner)->GetGameRep()->GetFireBindDelegate()->ActionDelegate.Execute("");
+    }
 }
 
 FVector UMAIBrainComponent::GetAbsMuzzleVec(FRotator InitialRot)
 {
     return ((((AMAIController*) AIOwner)->GetGameRep()->GetMuzzle() != nullptr) ?
-                                    ((AMAIController*) AIOwner)->GetGameRep()->GetMuzzle()->GetComponentLocation() : ((AMAIController*) AIOwner)->GetGameRep()->GetSelfLocation())
+                                    ((AMAIController*) AIOwner)->GetGameRep()->GetMuzzle()->GetComponentLocation() : AIOwner->GetPawn()->GetActorLocation())
                     - InitialRot.RotateVector(FVector(100.0f, 0.0f, 10.0f));
 }
 

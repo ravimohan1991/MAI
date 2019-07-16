@@ -15,9 +15,6 @@
 
 AShooterAIDummy::AShooterAIDummy()
 {
-    // Set size for collision capsule
-    //GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
-
     // set our turn rates for input
     BaseTurnRate = 45.f;
     BaseLookUpRate = 45.f;
@@ -30,28 +27,22 @@ AShooterAIDummy::AShooterAIDummy()
         FireSound = FireSoundObj.Object;
 
     SK_Mannequin = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("DummyMesh"));
-    //SK_Mannequin->RelativeRotation = FRotator(0, -90, 0);
-    //SK_Mannequin->RelativeLocation = FVector(30, 0, -170);
     SK_Mannequin->SetupAttachment(GetCapsuleComponent());
 
     // Create a CameraComponent
     FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
     FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());//SK_Mannequin, FName("head"));
-    //FirstPersonCameraComponent->RelativeLocation = FVector(0, -30, 100); // Position the camera
-    //FirstPersonCameraComponent->RelativeRotation = FRotator(0, 90, 0);
     FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
     // Create a gun mesh component
     FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
     FP_Gun->SetupAttachment(SK_Mannequin, FName("hand_r"));
-    //FP_Gun->SetupAttachment(SK_Mannequin);
 
     // Default offset from the character location for projectiles to spawn
     GunOffset = FVector(100.0f, 0.0f, 10.0f);
 
     FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
     FP_MuzzleLocation->SetupAttachment(SK_Mannequin);
-    //FP_MuzzleLocation->SetRelativeLocation(FVector(0.2f, 48.4f, -10.6f));
 }
 
 void AShooterAIDummy::BeginPlay()
@@ -114,7 +105,6 @@ void AShooterAIDummy::OnFire()
 
             // spawn the projectile at the muzzle
             World->SpawnActor<AShooterAIProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
-            UE_LOG(LogTemp, Warning, TEXT("The SpawnRotation is %s"), *SpawnRotation.ToString());
         }
     }
 

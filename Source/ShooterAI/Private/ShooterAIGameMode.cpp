@@ -19,7 +19,7 @@ AShooterAIGameMode::AShooterAIGameMode()
 	: Super()
 {
 	// set default pawn class to our Blueprinted character
-    //static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
+    // static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
     static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/DummyCharacter"));
     DefaultPawnClass = PlayerPawnClassFinder.Class;
 
@@ -27,7 +27,7 @@ AShooterAIGameMode::AShooterAIGameMode()
 	HUDClass = AShooterAIHUD::StaticClass();
 
     // for Tick purpose
-    PrimaryActorTick.bCanEverTick = true;
+    PrimaryActorTick.bCanEverTick = false;
 
 }
 
@@ -49,34 +49,34 @@ void AShooterAIGameMode::BeginPlay()
 
 void AShooterAIGameMode::DoInitialization()
 {
-    Original = SelfPlayer->GetController();
-
     // For input purposes
-    EnableInput((APlayerController*)Original);
-    InputComponent->BindKey(FKey(FName("One")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::Pressed1);
-    InputComponent->BindKey(FKey(FName("Two")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::Pressed2);
+    EnableInput((APlayerController*)SelfPlayer->GetController());
+    InputComponent->BindKey(FKey(FName("O")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::PressedO);
+    InputComponent->BindKey(FKey(FName("I")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::PressedI);
+    InputComponent->BindKey(FKey(FName("F")), EInputEvent::IE_Pressed, this, &AShooterAIGameMode::FireTest);
 
-    MAIGameState->SetMuzzle(((AShooterAIDummy*)GetSelfPlayer())->FP_MuzzleLocation);
-    MAIGameState->SelfPawn = SelfPlayer;
-    MAIGameState->Original = (APlayerController*) Original;
+    MAIGameState->SetMuzzle(((AShooterAIDummy*) SelfPlayer)->FP_MuzzleLocation);
+    MAIGameState->SetSelfPawn(SelfPlayer);
+    MAIGameState->SetOriginalController((APlayerController*) SelfPlayer->GetController());
 }
 
-void AShooterAIGameMode::Pressed1()
+void AShooterAIGameMode::FireTest()
 {
-    //UE_LOG(LogTemp, Warning, TEXT("Pressed 1"));
-    //MAIGameState->SetCameraManager(((APlayerController*) Original)->PlayerCameraManager);
-    // memorizing is important because control rotations are rewritten on possession (as per actor
-    // rotations which only consist of yaw)
+    MAIGameState->GetFireBindDelegate()->ActionDelegate.Execute(FKey(FName("LeftMouseButton")));
+}
+
+void AShooterAIGameMode::PressedO()
+{
     FRotator temp = SelfPlayer->GetControlRotation();
     MAIController->Possess(SelfPlayer);
     SelfPlayer->Controller->SetControlRotation(temp);
 }
 
-void AShooterAIGameMode::Pressed2()
+void AShooterAIGameMode::PressedI()
 {
     //UE_LOG(LogTemp, Warning, TEXT("Pressed 2"));
     FRotator temp = SelfPlayer->GetControlRotation();
-    Original->Possess(SelfPlayer);
+    MAIGameState->GetOriginalController()->Possess(SelfPlayer);
     SelfPlayer->Controller->SetControlRotation(temp);
 }
 
@@ -98,36 +98,6 @@ void AShooterAIGameMode::BuildBoxArray()
            BoxNum++;
         }
     }
-}
-
-APawn* AShooterAIGameMode::FindPawns()
-{
-    FString MeshRecognition(TEXT("Dummy"));
-    FString Left(TEXT("l"));
-    FString Right(TEXT("r"));
-
-    for( TActorIterator<APawn> ActorItr(GetWorld()); ActorItr; ++ActorItr )
-    {
-        FString tempst(*ActorItr->GetName());
-        if(tempst.Split(*MeshRecognition, &Left, &Right))
-        {
-           UE_LOG(LogTemp, Warning, TEXT("Goccha"), *ActorItr->GetName());
-           return  *ActorItr;
-        }
-
-    }
-    return nullptr;
-}
-
-void AShooterAIGameMode::Tick( float DeltaSeconds )
-{
-    //UE_LOG(LogTemp, Warning, TEXT("Tick() working"));
-    // store player's current position
-    MAIGameState->SetSelfLocation(SelfPlayer->GetActorLocation());
-    //UE_LOG(LogTemp, Warning, TEXT("Tick() working. Self location is %s"), *MAIGameState->GetSelfLocation().ToString());
-    //FindPawns();
-    //ShowBox();
-    Super::Tick(DeltaSeconds);
 }
 
 void AShooterAIGameMode::ShowBox()

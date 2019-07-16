@@ -23,27 +23,8 @@ void AMAIController::BeginPlay()
 void AMAIController::Tick(float DeltaSeconds)
 {
     Super::Tick(DeltaSeconds);
-   // AStaticMeshActor* closest = FindClosestBox();
-   // UE_LOG(LogTemp, Warning, TEXT("Closest box is %s at distance of %d."), *closest->GetName(), int32((closest->GetActorLocation() - MAIGameRep->GetSelfLocation()).Size()));
-
 }
-/*
-AStaticMeshActor* AMAIController::FindClosestBox()
-{
-    float Distance = 999999;
-    AStaticMeshActor* closest;
-    for( auto& Box : MAIGameRep->GetWhiteBoxes() )
-    {
-        FVector diffv = MAIGameRep->GetSelfLocation() - ((AStaticMeshActor*) Box)->GetActorLocation();
-        float diff = diffv.Size();
-        if( diff < Distance)
-        {
-            closest = (AStaticMeshActor*) Box;
-            Distance = diff;
-        }
-    }
-    return closest;
-}*/
+
 
 APawn* AMAIController::FindDummy()
 {

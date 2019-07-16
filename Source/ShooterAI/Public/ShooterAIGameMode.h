@@ -17,17 +17,11 @@ class AShooterAIGameMode : public AGameModeBase
 public:
 	AShooterAIGameMode();
 
-    /** For processing decisions and obtaining gamestate every frame. */
-    void Tick( float DeltaSeconds ) override;
-
     /** For setting the Pawn player*/
-    void SetSelfPlayer( APawn* Pawn ){SelfPlayer = Pawn;}// MAIGameState->SelfPawn = Pawn;}
+    void SetSelfPlayer( APawn* Pawn ){SelfPlayer = Pawn;}
 
     /** Accessing the self pawn. */
     APawn* GetSelfPlayer(){return SelfPlayer;}
-
-    /** For possessing pawn by MAI. Called by ShooterAICharacter BeginPlay().*/
-    void PossessSelfPawn();
 
     /** Estimate number of boxes in the level. */
     void BuildBoxArray();
@@ -35,19 +29,19 @@ public:
     /** Experimental*/
     void ShowBox();
 
-    /** Find pawns. */
-    APawn* FindPawns();
-
-    /***/
+    /** Setting elements from ShooterAIDummy class. */
     void DoInitialization();
 
-    void Pressed1();
+    /** Method called on key press. */
+    void PressedO();
 
-    void Pressed2();
+    /** Method called on key press. */
+    void PressedI();
 
-    void FirePawn();
-
+    /** Fore returning gamestate. */
     AMAIGameState* GetMAIGameState(){return  MAIGameState;}
+
+    void FireTest();
 
 private:
     /** MAIGamestate referance. */
@@ -61,12 +55,6 @@ private:
 
     /** The MAI controller! */
     AMAIController* MAIController;
-
-    /** Component that handles input for this actor, if input is enabled. */
-    UPROPERTY()
-    APawn* CInputComponent;
-
-    AController* Original;
 
 protected:
     /** Override BeginPlay() for spawning purposes. */

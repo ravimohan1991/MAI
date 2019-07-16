@@ -30,8 +30,10 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
     class UCameraComponent* FirstPersonCameraComponent;
 
+    /** The gamemode referance. */
     AShooterAIGameMode* GameMode;
 
+    /** Fire bind delegate. */
     FInputActionBinding* FireAction;
 
 
@@ -95,8 +97,4 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
     float BaseLookUpRate;
 
-    /***/
-    void Pressed1();
-
-    void Pressed2();
 };

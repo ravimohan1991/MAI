@@ -15,9 +15,11 @@ class AMAIGameState : public AInfo
     GENERATED_BODY()
 
 private:
-    /** The location of the Shooter.*/
-    UPROPERTY()
-    FVector SelfLocation;
+    /** Controller class the game began with (actually APlayerController)*/
+    APlayerController* Original;
+
+    /** Reference to the APawn playing. */
+    APawn* SelfPawn;
 
     /**
      * The location of white boxes stored dynamically!
@@ -35,23 +37,22 @@ private:
     /** The gamemode referance. */
     AGameModeBase* GameMode;
 
-    /** Camera manager. */
-    APlayerCameraManager* MPlayerCameraManager;
 
+private:
     /** Reference for place of shooting projectile. */
     class USceneComponent* FP_MuzzleLocation;
 
     /** Reference to firing delegate. */
-    FInputActionBinding* FireBindDelegate;
+    FInputActionBinding FireBindDelegate;
 
 public:
 
-    /** Getting current location of the Shooter.*/
-    FVector GetSelfLocation(){return SelfLocation;}
+    /** Getting the APawn pointer of shooter.*/
+    APawn* GetSelfPawn(){return SelfPawn;}
 
-    /** Setting current location of the Shooter.*/
+    /** Setting the shooter APawn.*/
     UFUNCTION()
-    void SetSelfLocation( FVector Location ){SelfLocation = Location;}
+    void SetSelfPawn( APawn* Pawn ){SelfPawn = Pawn;}
 
     /** Returning FVector array pointer. */
     UFUNCTION()
@@ -60,10 +61,13 @@ public:
     /** Add elements in box array. */
     void AddWhiteBox( AStaticMeshActor* SActor ){WhiteBoxes.Add(SActor);}
 
+    /** Not functional. */
     void AddSeenWhiteBoxes( AStaticMeshActor* SActor ){SeenWhiteBoxes.Add(SActor);}
 
+    /** Not functional. */
     void RemoveSeenWhiteBoxes( AStaticMeshActor* SActor ){SeenWhiteBoxes.Remove(SActor);}
 
+    /** Not functional. */
     TArray<AStaticMeshActor*> GetSeenWhiteBoxes(){return SeenWhiteBoxes;}
 
     /** Set GameMode. */
@@ -72,21 +76,19 @@ public:
     /** Get GameMode. */
     AGameModeBase* GetGameMode(){return GameMode;}
 
-    /***/
-    void SetCameraManager( APlayerCameraManager* PCM ){MPlayerCameraManager = PCM;}
-
-    APlayerCameraManager* GetCameraManager(){return MPlayerCameraManager;}
-
-    /***/
+    /** Memorizing the gun muzzle component. */
     void SetMuzzle(USceneComponent* USC){FP_MuzzleLocation = USC;}
 
+    /** Getting the gun muzzle component. */
     USceneComponent* GetMuzzle(){return FP_MuzzleLocation;}
 
-    void SetFireBindDelegate(FInputActionBinding* Del){FireBindDelegate = Del;}
+    /** Storing the fire delegate binding. */
+    void SetFireBindDelegate(FInputActionBinding* Del){FireBindDelegate = *Del;}
 
-    FInputActionBinding* GetFireBindDelegate(){return FireBindDelegate;}
+    /** Getting the fire delegate binging. */
+    FInputActionBinding* GetFireBindDelegate(){return &FireBindDelegate;}
 
-public:
-     APawn* SelfPawn;
-     APlayerController* Original;
+    void SetOriginalController( APlayerController* Cont ){Original = Cont;}
+
+    APlayerController* GetOriginalController(){return Original;}
 };
