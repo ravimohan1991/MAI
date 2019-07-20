@@ -7,6 +7,7 @@
 #include "Vector.h"
 #include "Engine/StaticMeshActor.h"
 #include "GameFramework/GameModeBase.h"
+#include "BehaviorTree/BlackboardComponent.h"
 #include "MAIGameState.generated.h"
 
 UCLASS()
@@ -36,6 +37,10 @@ private:
 
     /** The gamemode referance. */
     AGameModeBase* GameMode;
+
+    /** Blackboard reference. */
+    UPROPERTY(BlueprintReadOnly, Category = AI, meta = (AllowPrivateAccess = "true"))
+    UBlackboardComponent* BlackBoard;
 
 
 private:
@@ -82,6 +87,7 @@ public:
     /** Getting the gun muzzle component. */
     USceneComponent* GetMuzzle(){return FP_MuzzleLocation;}
 
+public:
     /** Storing the fire delegate binding. */
     void SetFireBindDelegate(FInputActionBinding* Del){FireBindDelegate = *Del;}
 
@@ -91,4 +97,8 @@ public:
     void SetOriginalController( APlayerController* Cont ){Original = Cont;}
 
     APlayerController* GetOriginalController(){return Original;}
+
+    void SetBlackBoard( UBlackboardComponent* SomeBB ){BlackBoard = SomeBB;}
+
+    UBlackboardComponent* GetBlackBoard(){return BlackBoard;}
 };

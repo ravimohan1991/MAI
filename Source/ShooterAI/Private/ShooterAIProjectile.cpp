@@ -3,6 +3,7 @@
 #include "ShooterAIProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
+#include "Runtime/Engine/Classes/Components/StaticMeshComponent.h"
 
 AShooterAIProjectile::AShooterAIProjectile() 
 {
@@ -32,13 +33,31 @@ AShooterAIProjectile::AShooterAIProjectile()
 	InitialLifeSpan = 3.0f;
 }
 
+void AShooterAIProjectile::BeginPlay()
+{
+    Super::BeginPlay();
+
+    // Method to talk to gamemode. Store self referance in Gamemode and let MAI posses itself
+    GameMode = GetWorld()->GetAuthGameMode<AShooterAIGameMode>();
+}
+
 void AShooterAIProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
 	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL) && OtherComp->IsSimulatingPhysics())
 	{
-		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
+        //OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
 
+        AStaticMeshActor* temp = (AStaticMeshActor*) OtherActor;
+        if(temp)
+        {
+            UMaterialInterface* tempMat = temp->GetStaticMeshComponent()->GetMaterial(0);
+            //UE_LOG(LogTemp, Warning, TEXT("The color material is %s"), *tempMat->GetName());
+            if(tempMat->GetName() == "CubeMaterial_Red")
+                GameMode->RedHit();
+            else
+                GameMode->BlueHit();
+        }
 		Destroy();
 	}
 }

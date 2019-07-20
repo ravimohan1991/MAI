@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
+#include "ShooterAIGameMode.h"
 #include "ShooterAIHUD.generated.h"
 
 UCLASS()
@@ -21,5 +22,10 @@ private:
 	/** Crosshair asset pointer */
 	class UTexture2D* CrosshairTex;
 
+    AShooterAIGameMode* GameMode;
+
+protected:
+    /** Overridable native event for when play begins for this actor. */
+    virtual void BeginPlay();
 };
 

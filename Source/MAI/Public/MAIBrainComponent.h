@@ -29,15 +29,43 @@ public:
     /** Function for invoking OnFire() method (in ShooterAIDummy). */
     void FireGun();
 
+    /** Look for appropriate box. */
+    AStaticMeshActor* LookForAppBox( TArray<AStaticMeshActor*> ASMArray );
+
 private:
     /** Exploration flag. */
     bool bShouldExplore = true;
 
     /** Closest box pointer. */
-    AStaticMeshActor* Closest = nullptr;
+    AStaticMeshActor* AppBox = nullptr;
 
     float deg = 0;
 
     /** Tick counter. */
     int ticktime = 0;
+
+    /** Should fire. Gives enough ticks to
+     *  compute between two fire.
+     */
+    bool bShouldFire = true;
+
+private:
+    //TArray <float> RewardEstimate;
+
+    TMap <int, float> RewardEstimate;
+
+    TMap <int, int> Number;
+
+    float epsilon = 0.1;
+
+    bool bGotReward= true;
+
+    bool bLookForBox = true;
+
+    float ScoreReward = 0;
+
+    int Action = -1;
+
+public:
+    void UpdateEstimation();
 };

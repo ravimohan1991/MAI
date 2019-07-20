@@ -26,23 +26,25 @@ AShooterAIDummy::AShooterAIDummy()
     if(FireSoundObj.Succeeded())
         FireSound = FireSoundObj.Object;
 
-    SK_Mannequin = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("DummyMesh"));
-    SK_Mannequin->SetupAttachment(GetCapsuleComponent());
-
     // Create a CameraComponent
     FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FirstPersonCamera"));
     FirstPersonCameraComponent->SetupAttachment(GetCapsuleComponent());//SK_Mannequin, FName("head"));
     FirstPersonCameraComponent->bUsePawnControlRotation = true;
 
+    SK_Mannequin = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("DummyMesh"));
+    SK_Mannequin->SetupAttachment(GetCapsuleComponent());
+
     // Create a gun mesh component
-    FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
-    FP_Gun->SetupAttachment(SK_Mannequin, FName("hand_r"));
+   // FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
+    //FP_Gun->SetupAttachment(SK_Mannequin);//, FName("hand_r"));
 
     // Default offset from the character location for projectiles to spawn
     GunOffset = FVector(100.0f, 0.0f, 10.0f);
 
     FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
     FP_MuzzleLocation->SetupAttachment(SK_Mannequin);
+
+    bUseControllerRotationPitch = true;
 }
 
 void AShooterAIDummy::BeginPlay()
@@ -125,6 +127,7 @@ void AShooterAIDummy::OnFire()
         }
     }
 }
+
 
 void AShooterAIDummy::MoveForward(float Value)
 {

@@ -100,6 +100,23 @@ void AShooterAIGameMode::BuildBoxArray()
     }
 }
 
+void AShooterAIGameMode::RedHit()
+{
+    HitScore += 100;
+    MAIGameState->GetBlackBoard()->SetValueAsFloat(FName("PlayerScore"), HitScore);
+}
+
+void AShooterAIGameMode::BlueHit()
+{
+    HitScore -= 10;
+    MAIGameState->GetBlackBoard()->SetValueAsFloat(FName("PlayerScore"), HitScore);
+}
+
+void AShooterAIGameMode::UpdateScore(float ScoreUpdate)
+{
+    HitScore += ScoreUpdate;
+}
+
 void AShooterAIGameMode::ShowBox()
 {
     for( auto& Box : MAIGameState->GetWhiteBoxes() )

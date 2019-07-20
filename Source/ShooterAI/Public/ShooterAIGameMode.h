@@ -43,6 +43,18 @@ public:
 
     void FireTest();
 
+    /** Updating the score. */
+    void UpdateScore( float ScoreUpdate );
+
+    /** Function called on Red hit. */
+    void RedHit();
+
+    /** Function called on Blue hit. */
+    void BlueHit();
+
+    /** Getting score. */
+    float GetScore(){return HitScore;}
+
 private:
     /** MAIGamestate referance. */
     AMAIGameState* MAIGameState;
@@ -55,6 +67,9 @@ private:
 
     /** The MAI controller! */
     AMAIController* MAIController;
+
+    /** The score. */
+    float HitScore;
 
 protected:
     /** Override BeginPlay() for spawning purposes. */

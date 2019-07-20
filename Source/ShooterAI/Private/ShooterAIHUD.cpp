@@ -6,12 +6,14 @@
 #include "TextureResource.h"
 #include "CanvasItem.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Engine.h"
 
 AShooterAIHUD::AShooterAIHUD()
 {
 	// Set the crosshair texture
 	static ConstructorHelpers::FObjectFinder<UTexture2D> CrosshairTexObj(TEXT("/Game/FirstPerson/Textures/FirstPersonCrosshair"));
 	CrosshairTex = CrosshairTexObj.Object;
+
 }
 
 
@@ -32,4 +34,19 @@ void AShooterAIHUD::DrawHUD()
 	FCanvasTileItem TileItem( CrosshairDrawPosition, CrosshairTex->Resource, FLinearColor::White);
 	TileItem.BlendMode = SE_BLEND_Translucent;
 	Canvas->DrawItem( TileItem );
+
+    float XL, YL;
+
+    // position for drawing score
+    Canvas->StrLen(GEngine->GetMediumFont(), FString("Score:"), XL, YL);
+    Canvas->SetDrawColor(255, 0 , 0);
+    Canvas->DrawText(GEngine->GetLargeFont(), FString("Score: " + FString::SanitizeFloat( GameMode->GetScore() )), Canvas->ClipX - 3 * XL, Canvas->ClipY * 0.2);
+
+
+}
+
+void AShooterAIHUD::BeginPlay()
+{
+    Super::BeginPlay();
+    GameMode = GetWorld()->GetAuthGameMode<AShooterAIGameMode>();
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ShooterAIGameMode.h"
 #include "ShooterAIProjectile.generated.h"
 
 UCLASS(config=Game)
@@ -19,6 +20,9 @@ class AShooterAIProjectile : public AActor
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* ProjectileMovement;
 
+    /** GameMode reference. */
+    AShooterAIGameMode* GameMode;
+
 public:
 	AShooterAIProjectile();
 
@@ -30,5 +34,9 @@ public:
 	FORCEINLINE class USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	FORCEINLINE class UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+
+protected:
+    /** Override BeginPlay() for spawning purposes. */
+    void BeginPlay() override;
 };
 

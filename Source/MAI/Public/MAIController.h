@@ -19,19 +19,16 @@ public:
     void Tick( float DeltaSeconds ) override;
 
     /** Setting the game state reference. */
-    void SetGameRep( AMAIGameState* GR ){MAIGameRep = GR;}
+    void SetGameRep( AMAIGameState* GR );
 
     /** Getting the game state reference. */
     AMAIGameState* GetGameRep(){return MAIGameRep;}
 
     UFUNCTION(BlueprintCallable, Category = "MAI")
     /** For possessing a pawn. */
-    void StartPossessing( APawn* PPawn );//{OnPossess(PPawn);}
+    void StartPossessing( APawn* PPawn );
 
-    /** Find Dummy*/
-    APawn* FindDummy();
-
-    /** Custom routine with cone implementation.  */
+    /** Custom routine with cone implementation. */
     virtual bool LineOfSightTo(const AActor* Other, FVector ViewPoint = FVector(ForceInit), bool bAlternateChecks = false) const override;
 
 protected:
