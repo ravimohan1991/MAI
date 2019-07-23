@@ -71,41 +71,70 @@ void UMAIBrainComponent::TickComponent(float DeltaTime, enum ELevelTick TickType
 void UMAIBrainComponent::UpdateEstimation()
 {
     float reward = ((AMAIController*) AIOwner)->GetGameRep()->GetBlackBoard()->GetValueAsFloat(FName("PlayerScore")) - ScoreReward;
+    UE_LOG(LogTemp, Warning, TEXT("| Reward obtained is %f"), reward);
     Number[Action] += 1;
     RewardEstimate[Action] = RewardEstimate[Action] + 1 / Number[Action] * (reward - RewardEstimate[Action]);
+    PrintEstimates();
+    UE_LOG(LogTemp, Warning, TEXT("+---------------------------------------------------------------"));
 }
 
 AStaticMeshActor* UMAIBrainComponent::LookForAppBox( TArray<AStaticMeshActor*> ASMArray )
 {
     float randNum = FMath::RandRange(0.0f, 1.0f);
 
-    UE_LOG(LogTemp, Warning, TEXT("Random number is %f"), randNum);
+    UE_LOG(LogTemp, Warning, TEXT("+---------------------------------------------------------------"));
+    UE_LOG(LogTemp, Warning, TEXT("|      * Iteration Number %d *"), Iteration++);
+    PrintEstimates();
+    //UE_LOG(LogTemp, Warning, TEXT("Random number is %f"), randNum);
     if(randNum >= epsilon)
     {
-        UE_LOG(LogTemp, Warning, TEXT("Exploiting"));
-        float Max = 0;
+        UE_LOG(LogTemp, Warning, TEXT("|Exploiting with epsilon = %f (randomNum = %f)"), epsilon, randNum);
+        float Max = -99999999;
         TArray <int> MaxArray;
+        for (auto arr = RewardEstimate.CreateIterator(); arr; ++arr)
+        {
+                if(arr.Value() >= Max)
+                    Max = arr.Value();
+        }
+
         // exploitation
         for(auto arr = RewardEstimate.CreateIterator(); arr; ++arr)
         {
-            if(arr.Value() >= Max)
+            if(arr.Value() == Max)
             {
                 Max = arr.Value();
                 MaxArray.Add(arr.Key());
             }
         }
+        PrintMaxEsArray(MaxArray);
         Action = FMath::RandRange(int(0), int(MaxArray.Num()) - 1);
-        UE_LOG(LogTemp, Warning, TEXT("Action is %d"), Action);
+        UE_LOG(LogTemp, Warning, TEXT("|Action is %d"), Action);
         return ASMArray.GetData()[MaxArray.GetData()[Action]];
     }
     else
     {
         Action = FMath::RandRange(int32(0), int32(3));
-        UE_LOG(LogTemp, Warning, TEXT("exploring with action %d"), Action);
+        UE_LOG(LogTemp, Warning, TEXT("|Exploring with 1 - epsilon = %f (randomNum = %f)"), 1 - epsilon, randNum);
+        UE_LOG(LogTemp, Warning, TEXT("|Action is %d"), Action);
         return ASMArray.GetData()[Action];
     }
 
     return nullptr;
+}
+
+void UMAIBrainComponent::PrintMaxEsArray(TArray<int> MaxArr)
+{
+    UE_LOG(LogTemp, Warning, TEXT("|Maximum estimates is/are:"));
+    for (auto& it : MaxArr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("|     Q(%d) = %f"), it, RewardEstimate[it]);
+    }
+}
+
+void UMAIBrainComponent::PrintEstimates()
+{
+    UE_LOG(LogTemp, Warning, TEXT("| Q(0) = %f, Q(1) = %f, Q(2) = %f, Q(3) = %f."), RewardEstimate[0], RewardEstimate[1], RewardEstimate[2], RewardEstimate[3]);
+    UE_LOG(LogTemp, Warning, TEXT("| N(0) = %d, N(1) = %d, N(2) = %d, N(3) = %d."), Number[0], Number[1], Number[2], Number[3]);
 }
 
 void UMAIBrainComponent::FireGun()

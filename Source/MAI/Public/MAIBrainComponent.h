@@ -66,6 +66,12 @@ private:
 
     int Action = -1;
 
+    int Iteration = 0;
+
 public:
     void UpdateEstimation();
+
+    void PrintEstimates();
+
+    void PrintMaxEsArray( TArray<int> MaxArr);
 };
