@@ -44,7 +44,7 @@ AShooterAIDummy::AShooterAIDummy()
     FP_MuzzleLocation = CreateDefaultSubobject<USceneComponent>(TEXT("MuzzleLocation"));
     FP_MuzzleLocation->SetupAttachment(SK_Mannequin);
 
-    bUseControllerRotationPitch = true;
+   // bUseControllerRotationPitch = true;
 }
 
 void AShooterAIDummy::BeginPlay()
