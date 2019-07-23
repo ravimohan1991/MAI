@@ -1,0 +1,261 @@
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 0 *
+LogTemp: MAI: | Q(0) = 0.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 0, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.677178)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 0.000000
+LogTemp: MAI: |     Q(1) = 0.000000
+LogTemp: MAI: |     Q(2) = 0.000000
+LogTemp: MAI: |     Q(3) = 0.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 1, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 1 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 1, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.904428)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 2, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 2 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 2, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.917581)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 3, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 3 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 3, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.394407)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 4, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 4 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = 0.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 4, N(1) = 0, N(2) = 0, N(3) = 0.
+LogTemp: MAI: |Exploring with 1 - epsilon = 0.900000 (randomNum = 0.049244)
+LogTemp: MAI: |Action is 2
+LogTemp: MAI: | Reward obtained is -10.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 4, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 5 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 4, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.711098)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 5, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 6 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 5, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.438493)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 6, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 7 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 6, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.962491)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 7, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 8 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 7, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.893448)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 8, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 9 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 8, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.467174)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 9, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 10 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 9, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.328129)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 10, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 11 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = 0.000000.
+LogTemp: MAI: | N(0) = 10, N(1) = 0, N(2) = 1, N(3) = 0.
+LogTemp: MAI: |Exploring with 1 - epsilon = 0.900000 (randomNum = 0.097726)
+LogTemp: MAI: |Action is 3
+LogTemp: MAI: | Reward obtained is -10.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 10, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 12 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 10, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.476227)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 11, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 13 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 11, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.566612)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 12, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 14 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 12, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.416033)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 13, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 15 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 13, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.472457)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 14, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 16 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 14, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.347797)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 15, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 17 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 15, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.844412)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 18 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 0, N(2) = 1, N(3) = 1.
+LogTemp: MAI: |Exploring with 1 - epsilon = 0.900000 (randomNum = 0.032623)
+LogTemp: MAI: |Action is 3
+LogTemp: MAI: | Reward obtained is -10.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 0, N(2) = 1, N(3) = 2.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 19 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 0.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 0, N(2) = 1, N(3) = 2.
+LogTemp: MAI: |Exploring with 1 - epsilon = 0.900000 (randomNum = 0.071133)
+LogTemp: MAI: |Action is 1
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 100.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 1, N(2) = 1, N(3) = 2.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 20 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 100.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 1, N(2) = 1, N(3) = 2.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.617636)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |     Q(1) = 100.000000
+LogTemp: MAI: |Action is 1
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 100.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 2, N(2) = 1, N(3) = 2.
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: +---------------------------------------------------------------
+LogTemp: MAI: |      * Iteration Number 21 *
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 100.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 16, N(1) = 2, N(2) = 1, N(3) = 2.
+LogTemp: MAI: |Exploiting with epsilon = 0.100000 (randomNum = 0.883396)
+LogTemp: MAI: |Maximum estimates is/are:
+LogTemp: MAI: |     Q(0) = 100.000000
+LogTemp: MAI: |     Q(1) = 100.000000
+LogTemp: MAI: |Action is 0
+LogTemp: MAI: | Reward obtained is 100.000000
+LogTemp: MAI: | Q(0) = 100.000000, Q(1) = 100.000000, Q(2) = -10.000000, Q(3) = -10.000000.
+LogTemp: MAI: | N(0) = 17, N(1) = 2, N(2) = 1, N(3) = 2.
+LogTemp: MAI: +---------------------------------------------------------------
