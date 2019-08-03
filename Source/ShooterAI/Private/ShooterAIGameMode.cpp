@@ -13,17 +13,22 @@
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/PlayerInput.h"
 #include "Runtime/Engine/Classes/Components/InputComponent.h"
+#include "ShooterAIDummyAI.h"
 
 
 AShooterAIGameMode::AShooterAIGameMode()
 	: Super()
 {
 	// set default pawn class to our Blueprinted character
-    // static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/FirstPersonCharacter"));
     static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/FirstPersonCPP/Blueprints/DummyCharacter"));
-   // static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/CustomCharacter/Automated"));
     DefaultPawnClass = PlayerPawnClassFinder.Class;
 
+    static ConstructorHelpers::FClassFinder<AMAIPlayerController> MAIBPClass(TEXT("/Game/FirstPersonCPP/Blueprints/BP_MAIDummy"));
+    if(MAIBPClass.Succeeded())
+    {
+        MAIContObj = MAIBPClass.Class;
+
+    }
 	// use our custom HUD class
 	HUDClass = AShooterAIHUD::StaticClass();
 
@@ -39,13 +44,26 @@ void AShooterAIGameMode::BeginPlay()
     MAIGameState->SetGameMode(this);
 
     // spawn MAI's controller Actor
-    MAIController = (AMAIController*) GetWorld()->SpawnActor(AMAIController::StaticClass());
-    MAIController->SetGameRep(MAIGameState);
+    //MAIController = (AMAIPlayerController*) GetWorld()->SpawnActor(AMAIPlayerController::StaticClass());
+    //MAIController->SetGameRep(MAIGameState);
+    // spawn MAI's blueprint class.
+    MAIController = (AMAIPlayerController*) GetWorld()->SpawnActor(MAIContObj);
 
     // Save box actor references existing in the level
     BuildBoxArray();
 
     Super::BeginPlay();
+    SetGameReps();
+
+}
+
+void AShooterAIGameMode::SetGameReps()
+{
+    UE_LOG(LogTemp, Warning, TEXT("Trying to setup"));
+    for (TActorIterator<AMAIController> ActorItr(GetWorld()); ActorItr; ++ActorItr)
+    {
+        ActorItr->SetGameRep(MAIGameState);
+    }
 }
 
 void AShooterAIGameMode::DoInitialization()
@@ -101,21 +119,25 @@ void AShooterAIGameMode::BuildBoxArray()
     }
 }
 
-void AShooterAIGameMode::RedHit()
+void AShooterAIGameMode::RedHit(APawn* Pawn)
 {
-    HitScore += 100;
-    MAIGameState->GetBlackBoard()->SetValueAsFloat(FName("PlayerScore"), HitScore);
+    IncrementPawnAIScore(Pawn, 100);
+    UE_LOG(LogTemp, Warning, TEXT("Instigating pawn is %s"), *Pawn->GetName());
 }
 
-void AShooterAIGameMode::BlueHit()
+void AShooterAIGameMode::BlueHit(APawn* Pawn)
 {
-    HitScore -= 10;
-    MAIGameState->GetBlackBoard()->SetValueAsFloat(FName("PlayerScore"), HitScore);
+    IncrementPawnAIScore(Pawn, -10);
+    UE_LOG(LogTemp, Warning, TEXT("Instigating pawn is %s"), *Pawn->GetName());
+   // MAIGameState->GetBlackBoard()->SetValueAsTMap(FName("PlayerScore"), HitScore);   //SetValueAsFloat(FName("PlayerScore"), HitScore);
 }
 
-void AShooterAIGameMode::UpdateScore(float ScoreUpdate)
+void AShooterAIGameMode::IncrementPawnAIScore(APawn *Pawn, float Score)
 {
-    HitScore += ScoreUpdate;
+    if((AShooterAIDummy*)Pawn)
+        ((AShooterAIDummy*)Pawn)->PlayerScore += Score;
+    else if((AShooterAIDummyAI*)Pawn)
+        ((AShooterAIDummyAI*)Pawn)->PlayerScore += Score;
 }
 
 void AShooterAIGameMode::ShowBox()

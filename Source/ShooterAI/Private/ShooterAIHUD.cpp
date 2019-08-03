@@ -7,6 +7,7 @@
 #include "CanvasItem.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine.h"
+#include "ShooterAIDummy.h"
 
 AShooterAIHUD::AShooterAIHUD()
 {
@@ -40,9 +41,8 @@ void AShooterAIHUD::DrawHUD()
     // position for drawing score
     Canvas->StrLen(GEngine->GetMediumFont(), FString("Score:"), XL, YL);
     Canvas->SetDrawColor(255, 0 , 0);
-    Canvas->DrawText(GEngine->GetLargeFont(), FString("Score: " + FString::SanitizeFloat( GameMode->GetScore() )), Canvas->ClipX - 3 * XL, Canvas->ClipY * 0.2);
-
-
+    if((AShooterAIDummy*)this->GetOwningPawn())
+        Canvas->DrawText(GEngine->GetLargeFont(), FString("Score: " + FString::SanitizeFloat( ((AShooterAIDummy*)this->GetOwningPawn())->PlayerScore )), Canvas->ClipX - 3 * XL, Canvas->ClipY * 0.2);
 }
 
 void AShooterAIHUD::BeginPlay()

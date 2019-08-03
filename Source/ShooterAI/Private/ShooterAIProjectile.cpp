@@ -54,9 +54,9 @@ void AShooterAIProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActo
             UMaterialInterface* tempMat = temp->GetStaticMeshComponent()->GetMaterial(0);
             //UE_LOG(LogTemp, Warning, TEXT("The color material is %s"), *tempMat->GetName());
             if(tempMat->GetName() == "CubeMaterial_Red")
-                GameMode->RedHit();
+                GameMode->RedHit(this->Instigator);
             else
-                GameMode->BlueHit();
+                GameMode->BlueHit(this->Instigator);
         }
 		Destroy();
 	}

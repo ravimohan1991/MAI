@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "MAI/Public/MAIGameState.h"
-#include "MAI/Public/MAIController.h"
+#include "MAI/Public/MAIController/MAIPlayerController.h"
 
 #include "ShooterAIGameMode.generated.h"
 
@@ -44,16 +44,18 @@ public:
     void FireTest();
 
     /** Updating the score. */
-    void UpdateScore( float ScoreUpdate );
+   // void UpdateScore( float ScoreUpdate );
 
     /** Function called on Red hit. */
-    void RedHit();
+    void RedHit(APawn* Pawn);
 
     /** Function called on Blue hit. */
-    void BlueHit();
+    void BlueHit(APawn* Pawn);
 
-    /** Getting score. */
-    float GetScore(){return HitScore;}
+    /** Incrementing score. */
+    void IncrementPawnAIScore(APawn* Pawn, float Score);
+
+    void SetGameReps();
 
 private:
     /** MAIGamestate referance. */
@@ -65,11 +67,14 @@ private:
     /** Number of white boxes. */
     int32 BoxNum;
 
-    /** The MAI controller! */
-    AMAIController* MAIController;
+    /** The MAI player controller! */
+    TSubclassOf<AMAIPlayerController> MAIContObj;
+    AMAIPlayerController* MAIController;
 
     /** The score. */
-    float HitScore;
+    //float HitScore;
+
+   // TMap <APawn*, float> HitScore;
 
 protected:
     /** Override BeginPlay() for spawning purposes. */

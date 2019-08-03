@@ -51,6 +51,8 @@ void AShooterAIDummy::BeginPlay()
 {
     Super::BeginPlay();
 
+    if(!(APlayerController*)GetController())
+        return;
     // Method to talk to gamemode. Store self referance in Gamemode and let MAI posses itself
     GameMode = GetWorld()->GetAuthGameMode<AShooterAIGameMode>();
     if(GameMode)
@@ -104,6 +106,7 @@ void AShooterAIDummy::OnFire()
             //Set Spawn Collision Handling Override
             FActorSpawnParameters ActorSpawnParams;
             ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+            ActorSpawnParams.Instigator = this;
 
             // spawn the projectile at the muzzle
             World->SpawnActor<AShooterAIProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);

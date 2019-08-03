@@ -96,4 +96,6 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
     float BaseLookUpRate;
 
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Gameplay)
+    float PlayerScore;
 };
