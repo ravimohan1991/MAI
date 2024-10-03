@@ -20,3 +20,7 @@ Been a while since Epic has been experimenting with the concept of introducing R
   - [Video](https://cdn.qstv.on.epicgames.com/playlist/169c18db-fa28-4515-86c8-df4673653857/main.m3u8?s=eyJhbGciOiJIUzUxMiIsImtpZCI6ImxoTFF4a1JJemxYdGoiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJXSWNvWE9ZbS85aTZLQU10K0RNakhHMTVUY0hMMVhrTHUvYkphRWw5Y0QwPSIsImV4cCI6MTcyNzc3ODIzMX0.LjWhNYcHNv9uL4hxwMV0B3ArIDPzXg7LAuIZZdm0bI7dFuFZV5ROpJ9BrkjrbFv5HcTCtuXhSn9XiAcSbC75eQ)
   - [Blog Post](https://medium.com/@gensen/early-explorations-of-learning-agents-in-unreal-engine-ef74b058161e)
 
+Progress (October 4, 2024)
+- [UE5 Plugin](https://github.com/krumiaa/MindMaker)
+- [A Tutorial](https://towardsdatascience.com/create-a-custom-deep-reinforcement-learning-environment-in-ue4-cf7055aebb3e)
+
