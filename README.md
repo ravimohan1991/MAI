@@ -24,3 +24,11 @@ Progress (October 4, 2024)
 - [UE5 Plugin](https://github.com/krumiaa/MindMaker)
 - [A Tutorial](https://towardsdatascience.com/create-a-custom-deep-reinforcement-learning-environment-in-ue4-cf7055aebb3e)
 
+Progress (March 10, 2025)
+- [UnrealMLAgents](https://github.com/ravimohan1991/UnrealMLAgents)
+- [UE 5.5 tutorial](https://dev.epicgames.com/community/learning/courses/GAR/unreal-engine-learning-agents-5-5/bZnJ/unreal-engine-learning-agents-5-5)
+
+
+===========================
+Latest and noblest forum search
+[machine learning](https://forums.unrealengine.com/tags/intersection/unreal-engine/machine-learning)
