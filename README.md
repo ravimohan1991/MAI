@@ -31,5 +31,6 @@ Progress (March 10, 2025)
 Misc
 ---------------
 
-Latest and noblest forum search
-[machine learning](https://forums.unrealengine.com/tags/intersection/unreal-engine/machine-learning)
+- Latest and noblest forum search
+  [machine learning](https://forums.unrealengine.com/tags/intersection/unreal-engine/machine-learning)
+- [Github progress](https://github.com/EpicGames/UnrealEngine/tree/release/Engine/Plugins/Experimental/LearningAgents)
